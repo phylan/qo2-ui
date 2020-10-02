@@ -10,7 +10,7 @@ interface OfferHeroProps {
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
     amountText: {
-        color: theme.palette.success.light
+        color: theme.palette.secondary.main
     }
 }))
 
