@@ -1,3 +1,7 @@
+# Qualifying Offer UI
+
+This is a React Typescript re-implementation of the questionnaire application.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
