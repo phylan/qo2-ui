@@ -18,7 +18,7 @@ const OfferAmount: React.FunctionComponent<{ amount: string }> = ({amount}) => {
     const classes = useStyles()
     
     return(
-        <Typography variant="h5" className={classes.amountText}>
+        <Typography variant="h2" className={classes.amountText}>
             {amount}
         </Typography>
     )
@@ -29,9 +29,14 @@ export class OfferHero extends React.Component<OfferHeroProps> {
         let formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
         return formatter.format(amount)
     }
+    
+    cardStyle: object = {
+        flexGrow: 1
+    }
+    
     render() {
         return(
-            <Card>
+            <Card style={this.cardStyle}>
                 <CardContent>
                     <Typography color="primary" variant="h4" gutterBottom>
                         2017 Qualifying Offer
