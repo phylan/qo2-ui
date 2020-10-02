@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import { OfferHero } from './components/OfferHero'
 import OfferInfo from './components/OfferInfo'
 import OfferDetails from './models/OfferDetails'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import { OfferResponse } from './models/OfferResponse'
 import axios from 'axios'
 import { formatCurrency } from './utils/Currency'
@@ -39,19 +40,25 @@ export class App extends React.Component<{}, AppState> {
   render() {
     const containerStyle = { marginTop: '2em' }
 
-    return this.state.loading ? (<div>Loading</div>) : (
+    return (
       <div>
         <Bar/>
         <div style={containerStyle}>
           <Container maxWidth="lg">
-            <Grid container justify="center">
-              <Grid container item xs={5}>
-                <OfferHero amount={this.state.offerInfo.amount ?? undefined} currencyFormatter={formatCurrency}/>
-              </Grid>
-              <Grid container item xs={12} style={containerStyle}>
-                <OfferInfo includedPlayers={this.state.offerInfo.includedPlayers} excludedPlayers={this.state.offerInfo.excludedPlayers}/>
-              </Grid>
-            </Grid>
+            {this.state.loading
+              ? <Grid container justify="center" alignItems="stretch">
+                  <Grid container item xs={4} justify="center" alignItems="center">
+                    <CircularProgress color="secondary"/><h2 style={{marginLeft: '1em'}}>Loading salary data...</h2>
+                  </Grid>
+                </Grid>
+              : <Grid container justify="center">
+                  <Grid container item xs={5}>
+                    <OfferHero amount={this.state.offerInfo.amount ?? undefined} currencyFormatter={formatCurrency}/>
+                  </Grid>
+                  <Grid container item xs={12} style={containerStyle}>
+                    <OfferInfo includedPlayers={this.state.offerInfo.includedPlayers} excludedPlayers={this.state.offerInfo.excludedPlayers}/>
+                  </Grid>
+                </Grid>}
           </Container>
         </div>
       </div>
