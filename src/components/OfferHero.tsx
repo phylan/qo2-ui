@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 
 interface OfferHeroProps {
-    amount: number
+    amount?: number
 }
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -25,7 +25,8 @@ const OfferAmount: React.FunctionComponent<{ amount: string }> = ({amount}) => {
 }
 
 export class OfferHero extends React.Component<OfferHeroProps> {
-    formatCurrency = (amount: number) => {
+    formatCurrency = (amount?: number) => {
+        if(amount == null) { return "" }
         let formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
         return formatter.format(amount)
     }

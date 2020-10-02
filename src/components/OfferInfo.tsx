@@ -6,6 +6,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails'
 import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { Player } from '../models/Player'
+import PlayerList from './PlayerList'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -43,7 +44,7 @@ const OfferInfo: React.FunctionComponent<OfferInfoProps> = (props) => {
           <AccordionDetails>
             <Typography variant="subtitle1" >
                 The qualifying offer is a one-year contract, the value of which is calculated by averaging the highest 125 
-                player salaries from the prior season. { props.excludedPlayers.length } players could not be considered in this calculation due to missing 
+                player salaries from the prior season. { props.excludedPlayers?.length ?? 0 } players could not be considered in this calculation due to missing 
                 salary data for the previous season.
             </Typography>
           </AccordionDetails>
@@ -57,8 +58,7 @@ const OfferInfo: React.FunctionComponent<OfferInfoProps> = (props) => {
           </AccordionSummary>
           <AccordionDetails>
             <Typography variant="subtitle1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-              sit amet blandit leo lobortis eget.
+              <PlayerList players={props.includedPlayers ?? []}/>
             </Typography>
           </AccordionDetails>
         </Accordion>
@@ -70,10 +70,7 @@ const OfferInfo: React.FunctionComponent<OfferInfoProps> = (props) => {
             <Typography variant="h5" className={classes.heading}>Excluded Players</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography variant="subtitle1">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-              sit amet blandit leo lobortis eget.
-            </Typography>
+            <PlayerList players={props.excludedPlayers ?? []}/>
           </AccordionDetails>
         </Accordion>
       </div>
