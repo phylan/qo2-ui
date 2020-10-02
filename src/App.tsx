@@ -7,6 +7,7 @@ import OfferInfo from './components/OfferInfo'
 import OfferDetails from './models/OfferDetails'
 import { OfferResponse } from './models/OfferResponse'
 import axios from 'axios'
+import { formatCurrency } from './utils/Currency'
 
 type AppState = {
   offerInfo: OfferDetails,
@@ -45,7 +46,7 @@ export class App extends React.Component<{}, AppState> {
           <Container maxWidth="lg">
             <Grid container justify="center">
               <Grid container item xs={5}>
-                <OfferHero amount={this.state.offerInfo.amount ?? undefined}/>
+                <OfferHero amount={this.state.offerInfo.amount ?? undefined} currencyFormatter={formatCurrency}/>
               </Grid>
               <Grid container item xs={12} style={containerStyle}>
                 <OfferInfo includedPlayers={this.state.offerInfo.includedPlayers} excludedPlayers={this.state.offerInfo.excludedPlayers}/>

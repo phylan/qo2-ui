@@ -6,6 +6,7 @@ import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 
 interface OfferHeroProps {
     amount?: number
+    currencyFormatter: (amount?: number) => string
 }
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -25,12 +26,6 @@ const OfferAmount: React.FunctionComponent<{ amount: string }> = ({amount}) => {
 }
 
 export class OfferHero extends React.Component<OfferHeroProps> {
-    formatCurrency = (amount?: number) => {
-        if(amount == null) { return "" }
-        let formatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' })
-        return formatter.format(amount)
-    }
-    
     cardStyle: object = {
         flexGrow: 1
     }
@@ -42,7 +37,7 @@ export class OfferHero extends React.Component<OfferHeroProps> {
                     <Typography color="primary" variant="h4" gutterBottom>
                         2017 Qualifying Offer
                     </Typography>
-                    <OfferAmount amount={this.formatCurrency(this.props.amount)}/>
+                    <OfferAmount amount={this.props.currencyFormatter(this.props.amount)}/>
                 </CardContent>
             </Card>
         )

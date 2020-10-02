@@ -7,7 +7,8 @@ import Avatar from '@material-ui/core/Avatar'
 
 type PlayerPillProps = {
     name: string,
-    salary?: number
+    salary?: number,
+    currencyFormatter: (amount?: number) => string
 }
 
 const PlayerPill: React.FunctionComponent<PlayerPillProps> = (props) => {
@@ -20,7 +21,7 @@ const PlayerPill: React.FunctionComponent<PlayerPillProps> = (props) => {
             </ListItemAvatar>
             <ListItemText
                 primary={props.name}
-                secondary={props.salary ?? 'No salary data'}
+                secondary={props.salary ? props.currencyFormatter(props.salary) : 'No salary data'}
             />
         </ListItem>
     )
